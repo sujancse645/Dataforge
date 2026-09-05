@@ -49,8 +49,9 @@ export function BdhCqModule() {
       </div>
 
       <div className="bg-white border rounded-xl p-8 mb-12 shadow-sm">
-        <h3 className="text-xl font-bold mb-4">The Latent Update Equation</h3>
-        <EvidenceBadge level="PUBLISHED" source="From Attention to Synapses: Deriving BDH" />
+        <h3 className="text-xl font-bold mb-4">Educational abstraction of recurrent latent-state updating</h3>
+        <EvidenceBadge level="ILLUSTRATIVE" source="Conceptual simplification" />
+        <p className="text-sm text-gray-500 mb-4 italic">This is a simplified pedagogical abstraction, not the official BDH-CQ update equation.</p>
         <div className="my-6 text-center">
           <code className="text-2xl font-mono font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded">
             h_(t+1) = f(h_t, x)
@@ -72,10 +73,10 @@ export function BdhCqModule() {
       <div className="border-2 border-orange-200 bg-orange-50 rounded-xl p-8 mb-12">
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-xl font-bold text-orange-900">Interactive Latent Mechanism</h3>
-          <EvidenceBadge level="TOY" source="Our educational reimplementation - not official BDH-CQ" />
+          <EvidenceBadge level="ILLUSTRATIVE" source="Conceptual visualization — not model execution." />
         </div>
         <p className="text-sm text-orange-800 mb-6">
-          Change the number of recurrent internal updates to observe how a latent state evolves step-by-step before producing an answer.
+          Change the number of recurrent internal updates to observe how a latent state evolves conceptually step-by-step before producing an answer.
         </p>
         
         <div className="mb-6">
@@ -157,20 +158,17 @@ export function BdhCqModule() {
 
       <div className="bg-slate-900 text-slate-300 p-8 rounded-xl text-sm">
         <h3 className="text-white font-bold text-lg mb-4 uppercase tracking-widest">Limitations & Disclosures</h3>
+        <p className="mb-4 text-slate-400">
+          Our Coverage Cliff experiment is a live experiment on our deterministic reference system. BDH-CQ material is source-grounded published evidence and/or clearly labelled educational abstraction.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <strong className="text-white">Demonstrated Here</strong>
-            <p className="mt-1 mb-4">A deterministic extrapolation experiment and an integrated educational overview of published BDH-CQ evidence.</p>
-            
             <strong className="text-white">Established by Source</strong>
             <p className="mt-1">BDH-CQ effectively learns to reason from demonstrations using latent state updates instead of written traces.</p>
           </div>
           <div>
-            <strong className="text-white">What We Did Not Do</strong>
-            <p className="mt-1 mb-4">We did not run an official BDH-CQ checkpoint. We did not reproduce the authors' training pipeline. Our toy is strictly a conceptual abstraction.</p>
-            
             <strong className="text-white">Open Question</strong>
-            <p className="mt-1">We have NOT established that BDH-CQ has, or does not have, a Coverage Cliff under these exact experimental conditions.</p>
+            <p className="mt-1">We have not established whether BDH-CQ has a Coverage Cliff under our experimental conditions.</p>
           </div>
         </div>
       </div>

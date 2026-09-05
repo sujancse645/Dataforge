@@ -1,51 +1,82 @@
-# Dataforge
-Coverage Cliff Project.
+# Coverage Cliff
+
+**How far can a model generalize beyond what its demonstrations actually cover?**
+
+## The Falsifiable Claim
+"A model can appear to generalize successfully within the complexity of its demonstrations, yet fail sharply when the same underlying rule is pushed beyond that demonstrated coverage."
+
+*Note: This is a task- and model-specific hypothesis, not a universal law of AI.*
+
+## Project Overview
+Coverage Cliff is an interactive educational laboratory built for the Pathway / DataForge 2026 Pathway Track. It provides a reproducible experimental pipeline to explicitly measure the boundary between demonstrated structural coverage and true algorithmic extrapolation.
 
 ## Architecture
+Our architecture enforces strict separation between task generation, predictive evaluation, and mathematically verifiable ground truth.
+
 ```text
-Phase 3/4 Frontend (Next.js) -> Includes Coverage Cliff UI & BDH-CQ Educational Module
-      ↓
-Phase 2 API (FastAPI)
-      ↓
-Phase 1 Engine (Python)
-      ↓
-Generator (Task / Rule generation)
-      ↓
-Independent Solver (Z3 / Algebraic)
-      ↓
-Evaluator (Deterministic Reference)
-      ↓
+Frontend (Next.js)
+        ↓
+FastAPI (REST API)
+        ↓
+ExperimentRunner (Python)
+        ↓
+Task Generator → Evaluator (Deterministic Reference)
+        ↓
+Independent Ground Truth (Z3 Solver)
+        ↓
 Metrics & Cliff Detection
 ```
 
-## Running the Backend
-Ensure you have `fastapi` and `uvicorn` installed.
-To start the FastAPI backend server:
+## How to Run
+
+### 1. Backend (FastAPI)
 ```bash
+pip install -r requirements.txt
 python -m uvicorn src.api.main:app --reload
 ```
-API Documentation: `http://127.0.0.1:8000/docs`
+The backend API documentation is available at `http://127.0.0.1:8000/docs`.
 
-## Running the Frontend
-The interactive frontend is located in `apps/web`.
+### 2. Frontend (Next.js)
+In a separate terminal:
 ```bash
 cd apps/web
 npm install
 npm run dev
 ```
-Navigate to `http://localhost:3000`. 
-*(Note: If the backend runs on a different port, set `NEXT_PUBLIC_API_BASE_URL` in an `.env` file).*
+Navigate to `http://localhost:3000` to interact with the laboratory.
 
-## Scientific Integrity
-- **Ground Truth Independence**: Ground truth is computed by Z3 independently of the model prediction.
-- **Data Leakage**: The API strictly validates requests. Evaluators receive only representations meant for a model. Hidden rule parameters and seeds are isolated.
-- **Synthetic Evaluator**: The current deterministic evaluator is used purely for infrastructure testing and synthetic cliff detection. It is not real model evidence.
+### 3. Tests (Complete Regression)
+```bash
+# Windows powershell:
+$env:PYTHONPATH="."
+python smoke_test.py
+python api_smoke_test.py
+pytest
+```
 
-## BDH-CQ Educational Module
-The frontend includes a substantive educational module on BDH-CQ, serving as a frontier architecture contrast to the deterministic evaluator. 
+## Reproducibility
+Experiments are fully reproducible. By passing the identical `Random Seed` and `Demonstration Coverage` into the UI (or API/CLI), the system deterministically regenerates the exact same tasks, evaluations, and accuracy curves. 
 
-### Disclosures & Provenance
-- **AI-Assisted Development**: The development of this repository (including the engine, backend, and interactive UI) was assisted by AI agents following a strict scientific prompt sequence.
-- **Reused / Open-Source Code**: No proprietary BDH-CQ official inference code is redistributed. The application uses standard MIT-licensed React, Next.js, and Tailwind CSS templates.
-- **Toy Implementation**: The BDH-CQ module features an interactive visualizer for latent state updates. This is explicitly an **educational toy abstraction** and does not run an official BDH-CQ checkpoint.
-- **Primary Sources**: Claims within the BDH-CQ module are derived from the *Dragon Hatchling* paper and the *BDH-CQ Technical Report*. See `docs/sources.md` for a full mapping.
+## Methodology & Definitions
+- **Demonstration Coverage (Cmax)**: The maximum structural complexity shown to the model in the prompt.
+- **Extrapolation Distance (Dext)**: How far a test task exceeds the demonstrated coverage.
+- **Independent Ground Truth**: A Z3 solver computes the correct answer separately from the evaluator. The evaluator only sees strings.
+
+## Evidence Labels & BDH-CQ Integration
+We provide a substantive educational module on **BDH-CQ**, a frontier architecture capable of demonstration-driven latent reasoning without written chain-of-thought traces. This material serves as technical context.
+All claims in our application are labeled:
+- **OUR LIVE EXPERIMENT**: Results computed deterministically by our backend.
+- **PUBLISHED**: Claims directly supported by primary cited research.
+- **ILLUSTRATIVE**: Conceptual visual abstractions of architectures (e.g., our toy latent visualizer).
+
+## Limitations
+1. Our current deterministic reference evaluator validates the testing infrastructure; it is not a general-purpose frontier LLM.
+2. A detected "sharp cliff" demonstrates our boundary-detection capability. It does not establish that all AI systems have the same boundary.
+3. We have NOT tested whether official BDH-CQ has a Coverage Cliff under our experimental conditions.
+
+## Future Work
+We intend to integrate real commercial LLMs (OpenAI/Anthropic) as evaluators, expand the task families to logic/spatial reasoning, and provide a shareable URL encoding for remote collaboration.
+
+## Disclosures & Provenance
+- **AI-Assisted Development**: AI-assisted development was used for portions of coding, debugging, documentation, and interface development. The team reviewed and validated the resulting implementation and is responsible for understanding and defending the system.
+- **Source / License**: This project uses open-source libraries (React, Next.js, FastAPI, Z3). The BDH-CQ integration relies strictly on the *Dragon Hatchling* paper and the *BDH-CQ Technical Report* as primary sources. No proprietary BDH-CQ code or models are redistributed. 
