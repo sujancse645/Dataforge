@@ -3,7 +3,7 @@ Coverage Cliff Project.
 
 ## Architecture
 ```text
-Phase 3 Frontend (Next.js)
+Phase 3/4 Frontend (Next.js) -> Includes Coverage Cliff UI & BDH-CQ Educational Module
       ↓
 Phase 2 API (FastAPI)
       ↓
@@ -36,18 +36,16 @@ npm run dev
 Navigate to `http://localhost:3000`. 
 *(Note: If the backend runs on a different port, set `NEXT_PUBLIC_API_BASE_URL` in an `.env` file).*
 
-## Running Tests
-Run the entire backend test suite (Engine + API tests):
-```bash
-$env:PYTHONPATH="."
-pytest
-```
-Or run the API smoke test directly:
-```bash
-python api_smoke_test.py
-```
-
 ## Scientific Integrity
 - **Ground Truth Independence**: Ground truth is computed by Z3 independently of the model prediction.
 - **Data Leakage**: The API strictly validates requests. Evaluators receive only representations meant for a model. Hidden rule parameters and seeds are isolated.
 - **Synthetic Evaluator**: The current deterministic evaluator is used purely for infrastructure testing and synthetic cliff detection. It is not real model evidence.
+
+## BDH-CQ Educational Module
+The frontend includes a substantive educational module on BDH-CQ, serving as a frontier architecture contrast to the deterministic evaluator. 
+
+### Disclosures & Provenance
+- **AI-Assisted Development**: The development of this repository (including the engine, backend, and interactive UI) was assisted by AI agents following a strict scientific prompt sequence.
+- **Reused / Open-Source Code**: No proprietary BDH-CQ official inference code is redistributed. The application uses standard MIT-licensed React, Next.js, and Tailwind CSS templates.
+- **Toy Implementation**: The BDH-CQ module features an interactive visualizer for latent state updates. This is explicitly an **educational toy abstraction** and does not run an official BDH-CQ checkpoint.
+- **Primary Sources**: Claims within the BDH-CQ module are derived from the *Dragon Hatchling* paper and the *BDH-CQ Technical Report*. See `docs/sources.md` for a full mapping.

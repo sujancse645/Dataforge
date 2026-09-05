@@ -1,4 +1,5 @@
 import { ExperimentPanel } from '../components/ExperimentPanel';
+import { BdhCqModule } from '../components/BdhCqModule';
 
 export default function Home() {
   return (
@@ -42,6 +43,8 @@ export default function Home() {
         </div>
       </section>
       
+      <BdhCqModule />
+
       <footer className="mt-16 text-center text-sm text-gray-400 py-8 border-t">
         Coverage Cliff - Pathway / DataForge 2026
       </footer>
