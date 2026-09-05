@@ -3,11 +3,11 @@ Coverage Cliff Project.
 
 ## Architecture
 ```text
-Future Frontend (Next.js)
+Phase 3 Frontend (Next.js)
       ↓
-FastAPI API (src/api)
+Phase 2 API (FastAPI)
       ↓
-ExperimentRunner (src/engine/runner.py)
+Phase 1 Engine (Python)
       ↓
 Generator (Task / Rule generation)
       ↓
@@ -16,8 +16,6 @@ Independent Solver (Z3 / Algebraic)
 Evaluator (Deterministic Reference)
       ↓
 Metrics & Cliff Detection
-      ↓
-ExperimentResult
 ```
 
 ## Running the Backend
@@ -26,14 +24,20 @@ To start the FastAPI backend server:
 ```bash
 python -m uvicorn src.api.main:app --reload
 ```
+API Documentation: `http://127.0.0.1:8000/docs`
 
-## API Documentation
-When the server is running, interactive API documentation is available at:
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- ReDoc: `http://127.0.0.1:8000/redoc`
+## Running the Frontend
+The interactive frontend is located in `apps/web`.
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+Navigate to `http://localhost:3000`. 
+*(Note: If the backend runs on a different port, set `NEXT_PUBLIC_API_BASE_URL` in an `.env` file).*
 
 ## Running Tests
-Run the entire test suite (Engine + API tests):
+Run the entire backend test suite (Engine + API tests):
 ```bash
 $env:PYTHONPATH="."
 pytest
