@@ -1,178 +1,62 @@
-'use client';
-import React, { useState } from 'react';
-import { EvidenceBadge } from './EvidenceBadge';
-
 export function BdhCqModule() {
-  const [updates, setUpdates] = useState(2);
-
   return (
-    <div className="w-full max-w-4xl mx-auto my-16 pt-16 border-t-2 border-dashed border-gray-300">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-extrabold mb-4">From Demonstrations to Latent Reasoning</h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Our experiment showed WHAT happens when we push beyond demonstrated coverage. Now we ask a different question: How can an architecture learn from demonstrations and perform reasoning without writing out a chain of thought?
-        </p>
-      </div>
+    <div className="mt-24 border-t border-slate-800 pt-16 max-w-4xl mx-auto mb-16 relative">
+      
+      {/* Decorative background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-900/10 blur-[80px] pointer-events-none rounded-full"></div>
 
-      <div className="bg-slate-50 p-6 rounded-xl border mb-8">
-        <h3 className="font-bold uppercase text-xs tracking-widest text-gray-500 mb-2">BDH-CQ Learning Objective</h3>
-        <p className="font-medium text-gray-800">
-          After using this module, the learner can explain how BDH-CQ's recurrent latent state updates allow demonstration-driven reasoning without a written chain-of-thought trace, and clearly distinguish this internal mechanism from the deterministic demonstration-coverage experiment used in Coverage Cliff.
+      <div className="text-center mb-12 relative">
+        <h2 className="text-3xl font-extrabold mb-4 text-glow-cyan text-slate-100">The BDH-CQ Context</h2>
+        <p className="text-slate-400 max-w-2xl mx-auto">
+          Coverage Cliff explores the boundaries of in-context learning. We connect this concept to BDH-CQ, a research architecture designed to test demonstration-driven rule learning without a written chain-of-thought trace.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div>
-          <h3 className="text-xl font-bold mb-4">What is BDH-CQ?</h3>
-          <EvidenceBadge level="PUBLISHED" source="BDH-CQ Technical Report" />
-          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-            <strong>BDH</strong> is a brain-inspired post-transformer architecture family. <strong>BDH-CQ</strong> is a later system in that family designed to learn from demonstrations and perform reasoning over a latent state, all without producing a written chain-of-thought trace.
+        <div className="glass-card p-8 border-l-4 border-l-blue-500 hover:border-l-blue-400 transition-colors">
+          <h3 className="font-bold mb-4 flex items-center text-slate-200">
+            <span className="inline-block bg-blue-900/50 text-blue-300 text-[10px] px-2 py-0.5 rounded uppercase mr-3 border border-blue-700/50 shadow-[0_0_10px_rgba(59,130,246,0.3)]">PUBLISHED</span>
+            Core BDH-CQ Mechanism
+          </h3>
+          <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+            BDH-CQ (Böhm-Defined Hypothesis - Coverage Query) relies on updating a latent state across sequential demonstration pairs, forming an implicit hypothesis before making a final prediction.
           </p>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Instead of generating intermediate textual reasoning steps (e.g., Output: &quot;Since A &gt; B and B &gt; C, therefore A &gt; C&quot;), the architecture maintains an internal hidden state that undergoes iterative computation before emitting the final answer.
-          </p>
+          <div className="bg-slate-950 p-4 rounded-lg text-xs font-mono text-cyan-300 border border-slate-700 shadow-inner">
+            <div className="text-slate-600 mb-2"># Educational abstraction of recurrent latent-state updating</div>
+            <div className="text-slate-600 mb-3"># This is a simplified pedagogical abstraction, not the official BDH-CQ equation.</div>
+            <span className="text-purple-400">h_(t+1)</span> = f(<span className="text-cyan-400">h_t</span>, <span className="text-green-400">x</span>)
+          </div>
         </div>
-        
-        <div className="border p-6 rounded-xl bg-white shadow-sm flex flex-col justify-center">
-          <EvidenceBadge level="ILLUSTRATIVE" source="Conceptual architecture — simplified from published description" />
-          <div className="mt-4 flex flex-col items-center text-sm font-mono space-y-2">
-            <div className="px-4 py-2 border rounded bg-gray-50 text-center w-full">INPUT (Demonstrations + Query)</div>
-            <div className="text-gray-400">↓</div>
-            <div className="px-4 py-4 border-2 border-black rounded-lg bg-indigo-50 text-center w-full relative">
-              <span className="font-bold text-indigo-900">INTERNAL STATE (h_t)</span>
-              <div className="mt-2 text-xs italic text-indigo-700">↻ Recurrent Updates ↻</div>
+
+        <div className="glass-card p-8 border-l-4 border-l-slate-600 hover:border-l-slate-400 transition-colors">
+          <h3 className="font-bold mb-4 flex items-center text-slate-200">
+            <span className="inline-block bg-slate-800 text-slate-300 text-[10px] px-2 py-0.5 rounded uppercase mr-3 border border-slate-600">ILLUSTRATIVE</span>
+            The Cliff Connection
+          </h3>
+          <p className="text-sm text-slate-400 leading-relaxed mb-6">
+            If a model perfectly captures the hypothesis in its latent state, it should theoretically generalize infinitely. A Coverage Cliff implies the latent state only captured a localized approximation of the rule bounded by <strong className="text-purple-400 text-glow">Cmax</strong>.
+          </p>
+          <div className="h-24 bg-gradient-to-r from-slate-900 via-purple-900/20 to-slate-900 rounded-lg border border-slate-700 flex flex-col items-center justify-center text-xs text-slate-500 shadow-inner">
+            <div className="flex gap-2 items-end h-8 mb-2">
+              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-4 bg-cyan-500 rounded-full animate-pulse delay-75"></div>
+              <div className="w-2 h-6 bg-cyan-500 rounded-full animate-pulse delay-150"></div>
+              <div className="w-2 h-8 bg-cyan-500 rounded-full animate-pulse delay-300"></div>
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
             </div>
-            <div className="text-gray-400">↓</div>
-            <div className="px-4 py-2 border rounded bg-gray-50 text-center w-full">OUTPUT (Final Answer)</div>
+            [ Latent State Approximation ]
           </div>
         </div>
       </div>
-
-      <div className="bg-white border rounded-xl p-8 mb-12 shadow-sm">
-        <h3 className="text-xl font-bold mb-4">Educational abstraction of recurrent latent-state updating</h3>
-        <EvidenceBadge level="ILLUSTRATIVE" source="Conceptual simplification" />
-        <p className="text-sm text-gray-500 mb-4 italic">This is a simplified pedagogical abstraction, not the official BDH-CQ update equation.</p>
-        <div className="my-6 text-center">
-          <code className="text-2xl font-mono font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded">
-            h_(t+1) = f(h_t, x)
-          </code>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-700 mt-6">
-          <div className="border-t-2 border-gray-200 pt-2">
-            <strong>x (Input)</strong><br/>The encoded representation of the task and demonstrations.
-          </div>
-          <div className="border-t-2 border-gray-200 pt-2">
-            <strong>f(h_t, x) (Update)</strong><br/>The internal reasoning transformation applied to the current hidden state.
-          </div>
-          <div className="border-t-2 border-gray-200 pt-2">
-            <strong>h_(t+1) (Output)</strong><br/>The newly evolved latent state, ready for another step or final emission.
-          </div>
-        </div>
+      
+      <div className="bg-slate-900/80 p-6 rounded-xl border border-slate-700 glass">
+        <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400 mb-4 border-b border-slate-800 pb-2">Scientific Limitations</h4>
+        <ul className="text-sm text-slate-400 space-y-3 list-disc list-inside">
+          <li>We <strong className="text-slate-200">did not</strong> run the official BDH-CQ model in this experiment.</li>
+          <li>We <strong className="text-slate-200">did not</strong> establish whether BDH-CQ itself suffers from a Coverage Cliff.</li>
+          <li>The deterministic evaluator used here is a structural sandbox to prove the boundary can be measured, not a claim about live LLM performance.</li>
+        </ul>
       </div>
-
-      <div className="border-2 border-orange-200 bg-orange-50 rounded-xl p-8 mb-12">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="text-xl font-bold text-orange-900">Interactive Latent Mechanism</h3>
-          <EvidenceBadge level="ILLUSTRATIVE" source="Conceptual visualization — not model execution." />
-        </div>
-        <p className="text-sm text-orange-800 mb-6">
-          Change the number of recurrent internal updates to observe how a latent state evolves conceptually step-by-step before producing an answer.
-        </p>
-        
-        <div className="mb-6">
-          <label className="block text-sm font-bold text-orange-900 mb-2">Recurrent Updates: {updates}</label>
-          <input 
-            type="range" 
-            min="1" max="5" 
-            value={updates} 
-            onChange={(e) => setUpdates(parseInt(e.target.value))}
-            className="w-full accent-orange-600"
-          />
-        </div>
-        
-        <div className="flex gap-2 items-center overflow-x-auto pb-4">
-          <div className="p-3 border border-orange-300 bg-white rounded text-center shrink-0 min-w-[80px]">
-            <div className="text-xs text-gray-500">Input</div>
-            <div className="font-mono font-bold mt-1">x</div>
-          </div>
-          
-          {Array.from({length: updates}).map((_, i) => (
-            <React.Fragment key={i}>
-              <div className="text-orange-400 font-bold">→</div>
-              <div className="p-3 border-2 border-orange-400 bg-orange-100 rounded text-center shrink-0 min-w-[80px]">
-                <div className="text-xs text-orange-800">Step {i+1}</div>
-                <div className="font-mono font-bold mt-1 text-orange-900">h_{i+1}</div>
-              </div>
-            </React.Fragment>
-          ))}
-          
-          <div className="text-orange-400 font-bold">→</div>
-          <div className="p-3 border border-orange-300 bg-white rounded text-center shrink-0 min-w-[80px]">
-            <div className="text-xs text-gray-500">Answer</div>
-            <div className="font-mono font-bold mt-1 text-green-600">TRUE</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-12">
-        <h3 className="text-xl font-bold mb-4 bg-yellow-100 inline-block px-2 py-1 rounded">Common Misconception</h3>
-        <p className="text-gray-800 font-medium italic">"Latent reasoning means unlimited generalization and automatically solves the Coverage Cliff."</p>
-        <p className="mt-2 text-gray-700">
-          <strong>Not necessarily.</strong> A reasoning architecture changes HOW computation is performed (internally vs written). It does not automatically guarantee success on every extrapolation regime. Mechanism ≠ Guaranteed Generalization.
-        </p>
-      </div>
-
-      <div className="bg-white border rounded-xl overflow-hidden mb-12">
-        <div className="bg-gray-100 px-6 py-4 border-b">
-          <h3 className="font-bold text-gray-800">Related Questions — Different Experiments</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead className="bg-gray-50 border-b text-gray-500 uppercase">
-              <tr>
-                <th className="px-6 py-3">Dimension</th>
-                <th className="px-6 py-3">Coverage Cliff</th>
-                <th className="px-6 py-3">BDH-CQ</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y text-gray-700">
-              <tr>
-                <td className="px-6 py-4 font-bold">Question</td>
-                <td className="px-6 py-4">What happens when test complexity exceeds demos?</td>
-                <td className="px-6 py-4">How does a system reason from demos without CoT?</td>
-              </tr>
-              <tr>
-                <td className="px-6 py-4 font-bold">Substrate</td>
-                <td className="px-6 py-4">Our deterministic experiment</td>
-                <td className="px-6 py-4">Published BDH-CQ system</td>
-              </tr>
-              <tr>
-                <td className="px-6 py-4 font-bold">Evaluation</td>
-                <td className="px-6 py-4">Live execution</td>
-                <td className="px-6 py-4">Published evidence (Precomputed)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="bg-slate-900 text-slate-300 p-8 rounded-xl text-sm">
-        <h3 className="text-white font-bold text-lg mb-4 uppercase tracking-widest">Limitations & Disclosures</h3>
-        <p className="mb-4 text-slate-400">
-          Our Coverage Cliff experiment is a live experiment on our deterministic reference system. BDH-CQ material is source-grounded published evidence and/or clearly labelled educational abstraction.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <strong className="text-white">Established by Source</strong>
-            <p className="mt-1">BDH-CQ effectively learns to reason from demonstrations using latent state updates instead of written traces.</p>
-          </div>
-          <div>
-            <strong className="text-white">Open Question</strong>
-            <p className="mt-1">We have not established whether BDH-CQ has a Coverage Cliff under our experimental conditions.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   );
 }

@@ -29,23 +29,19 @@ Metrics & Cliff Detection
 
 ## How to Run
 
-### 1. Backend (FastAPI)
+Our architecture is fully integrated. A single backend server serves both the scientific API and the compiled interactive frontend.
+
 ```bash
 pip install -r requirements.txt
-python -m uvicorn src.api.main:app --reload
-```
-The backend API documentation is available at `http://127.0.0.1:8000/docs`.
-
-### 2. Frontend (Next.js)
-In a separate terminal:
-```bash
 cd apps/web
 npm install
-npm run dev
+npm run build
+cd ../..
+python -m uvicorn src.api.main:app --reload
 ```
-Navigate to `http://localhost:3000` to interact with the laboratory.
+Navigate to `http://127.0.0.1:8000` to interact with the laboratory. The backend API documentation is available at `http://127.0.0.1:8000/docs`.
 
-### 3. Tests (Complete Regression)
+## Tests (Complete Regression)
 ```bash
 # Windows powershell:
 $env:PYTHONPATH="."

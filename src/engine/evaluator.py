@@ -14,13 +14,18 @@ class DeterministicReferenceEvaluator(BaseEvaluator):
         prediction = task.expected_output
         if task.extrapolation_distance >= self.failure_distance:
             prediction = not task.expected_output
-            
-        correctness = 'CORRECT' if prediction == task.expected_output else 'INCORRECT'
+
+        correct = prediction == task.expected_output
         return PredictionResult(
             task_id=task.task_id,
-            prediction=prediction,
+            complexity=task.complexity,
+            extrapolation_distance=task.extrapolation_distance,
+            input_representation=task.input_representation,
+            prediction=str(prediction),
+            ground_truth=str(task.expected_output),
+            correct=correct,
             raw_output=str(prediction),
-            correctness=correctness,
+            correctness='CORRECT' if correct else 'INCORRECT',
             evaluator_name="DETERMINISTIC_REFERENCE",
             model_name="deterministic_mock",
             metadata={}

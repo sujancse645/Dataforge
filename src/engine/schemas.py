@@ -28,7 +28,12 @@ class Demonstration(BaseModel):
 
 class PredictionResult(BaseModel):
     task_id: str
-    prediction: Optional[bool]
+    complexity: int
+    extrapolation_distance: int
+    input_representation: str
+    prediction: str
+    ground_truth: str
+    correct: bool
     raw_output: str
     correctness: str  # 'CORRECT', 'INCORRECT', 'MALFORMED', 'ERROR'
     evaluator_name: str
