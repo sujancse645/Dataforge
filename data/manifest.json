@@ -1,0 +1,26 @@
+{
+  "preregistration": {
+    "project": "Coverage Cliff",
+    "track": "DataForge 2026 — Pathway Track",
+    "preregistration_date": "2026-09-05T07:20:00Z",
+    "falsifiable_claim": "A model can appear to generalize successfully within the complexity of its demonstrations, yet fail sharply when the same underlying rule is pushed beyond that demonstrated coverage.",
+    "task_family": "Transitive Inference",
+    "independent_variable": "Extrapolation Distance (Dext = Ctest - Cmax)",
+    "dependent_variable": "Accuracy (fraction of correct predictions vs independent Z3 ground truth)",
+    "fixed_parameters": {
+      "demonstration_count": 3,
+      "demonstration_complexity": 2,
+      "extrapolation_levels": [0, 1, 2, 3, 4],
+      "tasks_per_level": 5,
+      "reference_seed": 2026,
+      "evaluator": "deterministic"
+    },
+    "predicted_outcome": {
+      "in_coverage_accuracy": 1.0,
+      "near_boundary_accuracy": 1.0,
+      "extrapolation_cliff_expected": true,
+      "expected_cliff_type": "SHARP_CLIFF",
+      "expected_cliff_location": 3
+    }
+  }
+}

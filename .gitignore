@@ -12,3 +12,7 @@ apps/web/next-env.d.ts
 # Editors / OS
 .vscode/
 .DS_Store
+
+coverage-cliff-dataforge2026.zip
+staging/
+test_extraction/

@@ -1,0 +1,42 @@
+{
+  "experiment_id": "ref-seed-2026",
+  "task_family": "Transitive Inference",
+  "master_seed": 2026,
+  "demonstration_coverage": 2,
+  "tasks_evaluated": 25,
+  "level_metrics": {
+    "0": {
+      "extrapolation_distance": 0,
+      "accuracy": 1.0,
+      "correct": 5,
+      "total": 5
+    },
+    "1": {
+      "extrapolation_distance": 1,
+      "accuracy": 1.0,
+      "correct": 5,
+      "total": 5
+    },
+    "2": {
+      "extrapolation_distance": 2,
+      "accuracy": 1.0,
+      "correct": 5,
+      "total": 5
+    },
+    "3": {
+      "extrapolation_distance": 3,
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 5
+    },
+    "4": {
+      "extrapolation_distance": 4,
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 5
+    }
+  },
+  "cliff_detected": true,
+  "cliff_type": "SHARP_CLIFF",
+  "estimated_cliff_location": 3
+}
